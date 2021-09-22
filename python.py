@@ -14,9 +14,12 @@ pygame.display.set_caption("Labyrinth_2D")
 ecran = pygame.display.set_mode(variables.windowSize)
 loop = True
 
+mapInit()
+print(map)
+
 while loop : 
     ecran.fill((0, 0, 0))
-    mapInit()
+    mapDisplay()
     # print(random.randint(0, 4))
     rect = pygame.draw.rect(ecran, (0, 0, 255), (pygame.Rect(player.pos[0], player.pos[1], (variables.caseSize - 1), (variables.caseSize - 1))))
     for event in pygame.event.get() : 

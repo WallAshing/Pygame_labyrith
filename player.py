@@ -1,5 +1,6 @@
 import pygame
 
+from createNewMap import *
 from variables import *
 
 variables = Variables()
@@ -28,7 +29,6 @@ class Player :
             if self.pos[0] < (500 - variables.caseSize) :
                 self.pos[0] += variables.caseSize
                 self.casepos[0] += 1
-
 
         if event.key == pygame.K_UP :
             if self.pos[1] >= variables.caseSize :
