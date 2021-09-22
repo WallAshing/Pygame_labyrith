@@ -16,7 +16,10 @@ def mapInit() :
     for i in range(variables.mapSize) :
 					map.append([])
 					for j in range(variables.mapSize) :
-						if random.randint(1, 4) != 1 :
+						if i == 0 and j == 0 :
+							map[i].append(0)
+							print("Spawn created !")
+						elif random.randint(1, 4) != 1 :
 							map[i].append(0)
 						else :
 							map[i].append(1)
