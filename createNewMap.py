@@ -7,7 +7,6 @@ ecran = pygame.display.set_mode((500, 500))
 
 map = []
 
-
 # mapColor = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 variables = Variables()

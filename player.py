@@ -21,22 +21,22 @@ class Player :
 
     def move(self, event) : 
         if event.key == pygame.K_LEFT :
-            if self.pos[0] >= variables.caseSize :
+            if self.pos[0] >= variables.caseSize and ((map[self.casepos[0] - 1])[self.casepos[1]]) == 0:
                 self.pos[0] -= variables.caseSize
                 self.casepos[0] -= 1
 
         if event.key == pygame.K_RIGHT : 
-            if self.pos[0] < (500 - variables.caseSize) :
+            if self.pos[0] < (500 - variables.caseSize) and ((map[self.casepos[0] + 1])[self.casepos[1]]) == 0 :
                 self.pos[0] += variables.caseSize
                 self.casepos[0] += 1
 
         if event.key == pygame.K_UP :
-            if self.pos[1] >= variables.caseSize :
+            if self.pos[1] >= variables.caseSize and ((map[self.casepos[0]])[self.casepos[1] - 1]) == 0:
                 self.pos[1] -= variables.caseSize
                 self.casepos[1] -= 1
 
         if event.key == pygame.K_DOWN : 
-            if self.pos[1] < (500 - variables.caseSize) :
+            if self.pos[1] < (500 - variables.caseSize) and ((map[self.casepos[0]])[self.casepos[1] + 1]) == 0:
                 self.pos[1] += variables.caseSize
                 self.casepos[1] += 1
 
