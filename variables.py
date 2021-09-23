@@ -1,6 +1,6 @@
 class Variables :
     def __init__(self) :
-        self.mapSize = 10
+        self.mapSize = 15
         self.windowSize = (500 // self.mapSize * self.mapSize, 500 // self.mapSize * self.mapSize)
         self.caseSize = self.windowSize[0] / self.mapSize
         self.keyInitial = 1 

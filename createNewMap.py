@@ -14,7 +14,6 @@ class Map :
 		self.currentMap.clear()
 		for i in range(self.variable.mapSize) :
 			self.currentMap.append([])
-			print(str(self.variable.keyNumber) + "enter")
 			for j in range(self.variable.mapSize) :
 				oneToFour = random.randint(1, (self.probability))
 				if i == 0 and j == 0 :
@@ -30,12 +29,6 @@ class Map :
 					self.variable.keyNumber -= 1
 				else :
 					self.currentMap[i].append(0)
-				print(str(self.variable.keyNumber) + "end")
-		print(self.currentMap)
-		print(self.variable.mapSize)
-		
-
-
 
 	def mapDisplay(self, ecran) :
 		x = 0
