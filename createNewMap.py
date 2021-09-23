@@ -8,8 +8,9 @@ class Map :
 	# mapColor = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 	def __init__(self, variable):
 		self.variable = variable
-		self.probability = (self.variable.mapSize * 8)
+		self.probability = (self.variable.mapSize * 10)
 		self.currentMap = []
+
 	def mapInit(self) :
 		self.currentMap.clear()
 		for i in range(self.variable.mapSize) :
@@ -19,16 +20,17 @@ class Map :
 				if i == 0 and j == 0 :
 					self.currentMap[i].append(0)
 					print("Spawn created !")
-				elif i == 9 and j == 9 and self.variable.keyNumber > 0 :
+				elif i == (self.variable.mapSize - 1) and j == (self.variable.mapSize - 1) and self.variable.keyNumber > 0 :
 					self.currentMap[i].append(2)
 					self.variable.keyNumber -= 1
-				elif oneToFour < math.floor(self.probability * 0.375) :
+				elif oneToFour < math.floor(self.probability * 0.35) :
 					self.currentMap[i].append(1)
-				elif oneToFour == math.floor(self.probability * 0.625) and self.variable.keyNumber > 0 :
+				elif oneToFour == 150 and self.variable.keyNumber > 0 :
 					self.currentMap[i].append(2)
 					self.variable.keyNumber -= 1
 				else :
 					self.currentMap[i].append(0)
+
 
 	def mapDisplay(self, ecran) :
 		x = 0

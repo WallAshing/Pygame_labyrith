@@ -16,16 +16,17 @@ pygame.display.set_caption("Labyrinth_2D")
 
 loop = True
 
+while mapChecker.keyNumber != 0 :
+    player = Player(ecran, variables, map)
+    variables.keyNumber = variables.keyInitial
+    map.mapInit()
+    print('launching map checker')
+    mapChecker.mapChecker()
+    sleep(1)
+
 while loop : 
     ecran.fill((0, 0, 0))
-    
-    while mapChecker.keyNumber != 0 :
-        player = Player(ecran, variables, map)
-        variables.keyNumber = variables.keyInitial
-        map.mapInit()
-        mapChecker.mapChecker()
-        sleep(1)
-
+        
     if player.win == True:
         variables.keyColor = (0, 0, 255)
         map.mapDisplay(ecran)
