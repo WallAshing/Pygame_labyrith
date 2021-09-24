@@ -1,4 +1,3 @@
-from time import sleep
 class MapChecker : 
     def __init__(self, createNewMap, variable) :
         self.createNewMap = createNewMap
@@ -30,9 +29,6 @@ class MapChecker :
             tempBoxToCheckX = boxToCheck[0] - 1
             self.boxChecker(tempBoxToCheckX, tempBoxToCheckY, self.checkedBox)
             
-
-            print("this is the lenght of boxToCheck :" +str(len(self.boxToCheck)))
-
             self.checkedBox.append(boxToCheck)
 
             if self.keyNumber != 0 :
@@ -44,11 +40,6 @@ class MapChecker :
                 return
 
         self.checkedBox.clear()
-
-        if self.keyNumber == 0 :
-            print("You can clear the level.")
-        else :
-            print("You need to reset.")
 
         
 
@@ -65,38 +56,13 @@ class MapChecker :
                     return
 
             if self.createNewMap.currentMap[x][y] == 2 :
-                print("I found the key ! x : " + str(x) + " " + "y : " + str(y))
-                print("I will finally stop hitting walls 😳 !")
                 self.keyNumber -= 1
 
             if self.createNewMap.currentMap[x][y] == 1 :
-                print("OUCH... that's a wall here -> x : " + str(x) + " "  + "y : " + str(y))
+                return
 
             if self.createNewMap.currentMap[x][y] == 0 :
-                print("Nothing to report here -> x : " + str(x)  + " " + "y : " + str(y))
                 self.boxToCheck.append((x, y))
                 
         else :
-            print("It's out of the map... -> x : " + str(x) + " " + "y : " + str(y))
-
-        
-
-
-            # del self.boxToCheck[0]
-
-
-
-    # def checkerInit(self) :
-    #     self.findBoxToCheck()
-
-
-
-# Faire 2 listes 
-# Liste n°1 => contient les blocs tester
-# Liste n°2 => contient les blocs à tester
-# Tester les cases une par une si il est possible de se déplacer sur les cases adjacentes
-# Si le bloc à tester est vide et que je suis pas passer au-dessus de la clé c'est qu'il faut reset
-# Si je trouve la clé, le niveau est bon
-# Le test de déplacement fait les 4 directions à chaque fois
-# Si la position est déjà dans la liste des blocs tester on skip sinon on check si c'est accessible si oui on met dans tester sinon on la met pas
-# C'est clairement une réaction en chaine.
+            return

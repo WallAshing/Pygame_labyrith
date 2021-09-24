@@ -3,7 +3,6 @@ from player import *
 from createNewMap import *
 from variables import *
 from mapChecker import *
-from time import sleep
 import pygame
 
 variables = Variables()
@@ -22,18 +21,14 @@ while loop :
     ecran.fill((0, 0, 0))
         
     while mapChecker.keyNumber != 0 :
-        player = Player(ecran, variables, map)
         variables.keyNumber = variables.keyInitial
         map.mapInit()
-        print('launching map checker')
+        player = Player(ecran, variables, map)
         mapChecker.mapChecker()
-        sleep(1)
 
     if player.win == True:
         variables.keyColor = (0, 0, 255)
         map.mapDisplay(ecran)
-        print("Now, it will restart forever...")
-        sleep(1)
         variables.keyNumber = variables.keyInitial
         variables.keyColor = (255, 0, 0)
         mapChecker.keyNumber = variables.keyInitial
@@ -42,7 +37,6 @@ while loop :
     for event in pygame.event.get() : 
         if event.type == pygame.KEYDOWN :
             player.move(event)
-            print("x = " + str(player.casepos[0]) + " " + "y = " + str(player.casepos[1]))
             if event.key == pygame.K_ESCAPE :
                 loop = False
         if event.type == pygame.K_r : 
