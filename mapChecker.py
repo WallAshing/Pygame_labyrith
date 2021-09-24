@@ -33,16 +33,14 @@ class MapChecker :
 
             if self.keyNumber != 0 :
                 del self.boxToCheck[0]
-                
+
             else :
+                # self.variable.
                 self.boxToCheck.clear()
                 self.checkedBox.clear()
                 return
 
         self.checkedBox.clear()
-
-        
-
 
     def boxChecker(self, x, y, checkedBox) :
         if x >= 0 and x <= (self.variable.mapSize - 1) and y >= 0 and y <= (self.variable.mapSize - 1) :

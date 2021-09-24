@@ -20,6 +20,9 @@ class Map :
 				if i == 0 and j == 0 :
 					self.currentMap[i].append(0)
 					print("Spawn created !")
+				elif i == (self.variable.mapSize - 1) and j == 0 :
+					self.currentMap[i].append(0)
+					print("Ennemi spawn created !")
 				elif i == (self.variable.mapSize - 1) and j == (self.variable.mapSize - 1) and self.variable.keyNumber > 0 :
 					self.currentMap[i].append(2)
 					self.variable.keyNumber -= 1
@@ -38,11 +41,11 @@ class Map :
 			y = 0
 			for j in i :
 				if self.currentMap[x][y] == 1 :
-					pygame.draw.rect(ecran, (95, 97, 80), pygame.Rect((x*self.variable.caseSize) + 1, (y*self.variable.caseSize) + 1, (self.variable.caseSize - 1), (self.variable.caseSize - 1)))
+					pygame.draw.rect(ecran, (80, 70, 70), pygame.Rect((x*self.variable.caseSize) + 1, (y*self.variable.caseSize) + 1, (self.variable.caseSize - 1), (self.variable.caseSize - 1)))
 				elif self.currentMap[x][y] == 2 :
 					pygame.draw.rect(ecran, self.variable.keyColor, pygame.Rect((x*self.variable.caseSize) + 1, (y*self.variable.caseSize) + 1, (self.variable.caseSize - 1), (self.variable.caseSize - 1)))
 				else :
-					pygame.draw.rect(ecran, (218, 227, 150), pygame.Rect((x*self.variable.caseSize) + 1, (y*self.variable.caseSize) + 1, (self.variable.caseSize - 1), (self.variable.caseSize - 1)))
+					pygame.draw.rect(ecran, (77,131,222), pygame.Rect((x*self.variable.caseSize) + 1, (y*self.variable.caseSize) + 1, (self.variable.caseSize - 1), (self.variable.caseSize - 1)))
 				y += 1
 			x += 1
 
