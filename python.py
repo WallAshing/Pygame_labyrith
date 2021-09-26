@@ -54,8 +54,9 @@ while loop :
     
     map.mapDisplay(ecran)
     rect = pygame.draw.rect(ecran, (0, 255, 0), (pygame.Rect(player.pos[0], player.pos[1], (variables.caseSize - 1), (variables.caseSize - 1))))
-    ennemi.ennemiDisplay(ecran)
-    ennemi.ennemiMove()
+    # Fait apparaître les ennemis
+    # ennemi.ennemiDisplay(ecran) 
+    # ennemi.ennemiMove()
     ecran.blit(yourScore, scoreRect)
     pygame.display.flip()
 

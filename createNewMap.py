@@ -28,9 +28,9 @@ class Map :
 					self.variable.keyNumber -= 1
 				elif oneToFour < math.floor(self.probability * 0.35) :
 					self.currentMap[i].append(1)
-				elif oneToFour == 150 and self.variable.keyNumber > 0 :
-					self.currentMap[i].append(2)
-					self.variable.keyNumber -= 1
+				# elif oneToFour == 150 and self.variable.keyNumber > 0 :
+				# 	self.currentMap[i].append(2)
+				# 	self.variable.keyNumber -= 1
 				else :
 					self.currentMap[i].append(0)
 
