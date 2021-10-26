@@ -15,6 +15,7 @@ class Ennemi :
         self.walkableBox = []
         self.tempWalkableBox = []
         self.boxToSuppr = []
+        self.lastPath = []
 
     def move(self) :
         self.index += 1
@@ -61,7 +62,7 @@ class Ennemi :
                         self.boxToSuppr.append(walkableBox)
 
             self.SupprBoxes()
-            
+
             if len(self.walkableBox) > 0 :
                 boxNumber = random.randint(0, len(self.walkableBox) - 1)
                 self.casePos[0] = self.walkableBox[boxNumber][0]

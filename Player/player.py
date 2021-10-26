@@ -4,14 +4,10 @@ class Player :
         self.variable = variable
         self.createNewMap = createNewMap
         self.ecran = ecran
-        self.vit = 5 
         self.pos = [1, 1]
         self.casepos = [0, 0]
         self.vivant = True
         self.win = False
-
-    # def deplacement(self, dir):
-    #     self.pos[0] += dir*vit
 
     def move(self, event) : 
         

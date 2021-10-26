@@ -7,7 +7,4 @@ class Variables :
         self.keyNumber = 1
         self.keyColor = (0, 0, 255)
         self.winNumber = 0
-        self.ennemiNumber = 1
-        self.CheckedList = []
-        self.toCheckList = []
-
+        self.ennemiNumber = 5
