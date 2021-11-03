@@ -1,7 +1,7 @@
 
 import random
 
-class Ennemi :
+class Enemy :
     def __init__(self, createNewMap, ennemicasePos):
         self.createNewMap = createNewMap
         self.casePos = ennemicasePos
@@ -15,7 +15,7 @@ class Ennemi :
         self.walkableBox = []
         self.tempWalkableBox = []
         self.boxToSuppr = []
-        self.lastPath = []
+        self.surroundingBox = []
 
     def move(self) :
         self.index += 1
@@ -25,7 +25,6 @@ class Ennemi :
 
     def decisionMaker(self) :
         self.directionsChecker()
-        print("walkable : " + str(self.walkableBox))
         for walkableBox in self.walkableBox:
             self.tempWalkableBox.append(walkableBox)
             if len(self.deadEndBox) > 0 :
@@ -47,7 +46,6 @@ class Ennemi :
         self.movementDecision()
 
     def movementDecision(self) :
-        # print(len(self.walkableBox))
         if len(self.walkableBox) > 0 :
             boxNumber = random.randint(0, len(self.walkableBox) - 1)
             self.casePos[0] = self.walkableBox[boxNumber][0]
@@ -117,7 +115,6 @@ class Ennemi :
             self.wallNumber += 1
             return
 
-
     def directionToPosition(self, pos, direction) :
         x, y = (pos[0], pos[1])
         if direction == "North":
@@ -139,8 +136,7 @@ class Ennemi :
         self.index = 0
         self.walkableBox.clear()
         self.tempWalkableBox.clear()
-        
-        
+   
     def SupprBoxes(self) :
         for boxToSuppr in self.boxToSuppr :
             self.walkableBox.remove(boxToSuppr)

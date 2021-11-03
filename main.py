@@ -2,7 +2,7 @@ from Player.player import *
 from Map.createNewMap import *
 from variables import *
 from Map.mapChecker import *
-from Ennemis.ennemis import *
+from Enemies.enemies import *
 import pygame
 import time
 
@@ -11,7 +11,7 @@ ecran = pygame.display.set_mode(variables.windowSize)
 createMap = createNewMap(variables)
 player = Player(ecran, variables, createMap)
 mapChecker = MapChecker(createMap, variables)
-ennemis = Ennemis(variables, createMap)
+ennemies = Enemies(variables, createMap)
 
 pygame.display.set_caption("Labyrinth_2D")
 pygame.font.init()
@@ -21,7 +21,7 @@ loop = True
 font = pygame.font.SysFont('Arial', 30)
 
 # Fait apparaître les ennemis
-ennemis.ennemisInit()
+ennemies.ennemiesInit()
 
 while loop : 
     ecran.fill((0, 0, 0))
@@ -34,8 +34,8 @@ while loop :
     while mapChecker.keyNumber != 0 :
         variables.keyNumber = variables.keyInitial
         createMap.mapInit()
-        ennemis = Ennemis(variables, createMap)
-        ennemis.ennemisInit()
+        ennemies = Enemies(variables, createMap)
+        ennemies.ennemiesInit()
         player = Player(ecran, variables, createMap)
         mapChecker.mapChecker()
 
@@ -62,8 +62,8 @@ while loop :
     createMap.mapDisplay(ecran)
     rect = pygame.draw.rect(ecran, (0, 255, 0), (pygame.Rect(player.pos[0], player.pos[1], (variables.caseSize - 1), (variables.caseSize - 1))))
 
-    ennemis.ennemisMove()
-    ennemis.ennemisDisplay(ecran)
+    ennemies.ennemiesMove()
+    ennemies.ennemiesDisplay(ecran)
 
     ecran.blit(yourScore, scoreRect)
     pygame.display.flip()

@@ -1,7 +1,7 @@
-from Ennemis.ennemi import *
+from Enemies.enemy import *
 import pygame
 
-class Ennemis :
+class Enemies :
 
     def __init__(self, variable, createNewMap):
         self.variable = variable
@@ -10,15 +10,15 @@ class Ennemis :
         self.ennemiCasePosList = []
         self.ennemis = {}
 
-    def ennemisInit(self) :          
+    def ennemiesInit(self) :          
         for i in range(0, self.variable.ennemiNumber) :
             self.ennemiCasePosList.append([(self.variable.mapSize - 1), 0])
-            self.ennemis["Ennemi{0}".format(i)] = Ennemi(self.createNewMap, self.ennemiCasePosList[i]) # Créé un dictionnaire d'énnemis
+            self.ennemis["Ennemi{0}".format(i)] = Enemy(self.createNewMap, self.ennemiCasePosList[i]) # Créé un dictionnaire d'énnemis
 
-    def ennemisMove(self) :
+    def ennemiesMove(self) :
         for i in range(0, self.variable.ennemiNumber) :
             self.ennemis["Ennemi{0}".format(i)].move()
             
-    def ennemisDisplay(self, ecran):
+    def ennemiesDisplay(self, ecran):
         for ennemi in self.ennemiCasePosList :
             pygame.draw.rect(ecran, (255, 0, 0), (pygame.Rect((ennemi[0] * self.variable.caseSize + 1), (ennemi[1] * self.variable.caseSize + 1), (self.variable.caseSize - 1), (self.variable.caseSize - 1))))
