@@ -1,7 +1,8 @@
 from Player.player import *
 from Map.createNewMap import *
-from variables import *
 from Map.mapChecker import *
+from Map.items import *
+from variables import *
 from Enemies.enemies import *
 import pygame
 import time
@@ -9,9 +10,10 @@ import time
 variables = Variables()
 ecran = pygame.display.set_mode(variables.windowSize)
 createMap = createNewMap(variables)
-player = Player(ecran, variables, createMap)
+items = Items(ecran, variables, createMap)
+player = Player(ecran, variables, createMap, items)
 mapChecker = MapChecker(createMap, variables)
-ennemies = Enemies(variables, createMap)
+ennemies = Enemies(ecran, variables, createMap)
 
 pygame.display.set_caption("Labyrinth_2D")
 pygame.font.init()
@@ -23,21 +25,29 @@ font = pygame.font.SysFont('Arial', 30)
 # Fait apparaître les ennemis
 ennemies.ennemiesInit()
 
+
 while loop : 
     ecran.fill((0, 0, 0))
     yourScore = font.render("Score : " + str(variables.winNumber), True, (255, 255, 255))
     scoreRect = yourScore.get_rect()
     scoreRect.center = (variables.windowSize[0] // 2, 20)
-    # print(time.localtime()) la loop est lu 570 fois par secondes, pas mal les fps
+    # print(time.localtime()) la loop est lu 570 fois par secondes
+    # keys = pygame.key.get_pressed()
+    
+    player.movingCooldown()
 
 
     while mapChecker.keyNumber != 0 :
         variables.keyNumber = variables.keyInitial
         createMap.mapInit()
-        ennemies = Enemies(variables, createMap)
+        ennemies = Enemies(ecran, variables, createMap)
         ennemies.ennemiesInit()
-        player = Player(ecran, variables, createMap)
+        items = Items(ecran, variables, createMap)
+        items.itemsInit()
         mapChecker.mapChecker()
+        
+        player = Player(ecran, variables, createMap, items)
+        
 
     if player.win == True:
         variables.keyColor = (0, 255, 0)
@@ -45,25 +55,19 @@ while loop :
         variables.keyNumber = variables.keyInitial
         variables.keyColor = (0, 0, 255)
         mapChecker.keyNumber = variables.keyInitial
-        player = Player(ecran, variables, createMap)
+        player = Player(ecran, variables, createMap, items)
+        print("test")
 
-    for event in pygame.event.get() : 
-        if event.type == pygame.KEYDOWN :
-            player.move(event)
-            if event.key == pygame.K_ESCAPE :
-                loop = False
-            if event.key == pygame.K_r :
-                player.win = True
-            if event.key == pygame.K_p :
-                time.sleep(100)
-        if event.type == pygame.QUIT : 
-            loop = False
-    
+    if player.move(player) == False :
+        loop = False
+
+
     createMap.mapDisplay(ecran)
     rect = pygame.draw.rect(ecran, (0, 255, 0), (pygame.Rect(player.pos[0], player.pos[1], (variables.caseSize - 1), (variables.caseSize - 1))))
 
     ennemies.ennemiesMove()
-    ennemies.ennemiesDisplay(ecran)
+    ennemies.ennemiesDisplay()
+    items.itemsDisplay()
 
     ecran.blit(yourScore, scoreRect)
     pygame.display.flip()

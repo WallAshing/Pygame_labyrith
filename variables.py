@@ -9,3 +9,9 @@ class Variables :
         self.keyColor = (0, 0, 255)
         self.winNumber = 0
         self.ennemiNumber = 1
+        self.itemsNumber = {
+            "item1" : 1,
+            "item2" : 1,
+            "item3" : 1,
+            "item4" : 1,
+        }
