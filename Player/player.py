@@ -1,3 +1,4 @@
+
 import pygame
 import time
 class Player : 
@@ -25,6 +26,8 @@ class Player :
             "item4" : 0,
         }
 
+    def playerDisplay(self):
+        pygame.draw.rect(self.ecran, (0, 255, 0), (pygame.Rect((self.casepos[0] * self.variable.caseSize + 1), (self.casepos[1] * self.variable.caseSize + 1), (self.variable.caseSize - 1), (self.variable.caseSize - 1))))
 
     def move(self, player) :
         for event in pygame.event.get() :
@@ -213,8 +216,4 @@ class Player :
         if self.index != self.moveCooldown :
             self.index += 1
         # print(self.index)
-
-    
-
-    
 

@@ -5,7 +5,6 @@ from Map.items import *
 from variables import *
 from Enemies.enemies import *
 import pygame
-import time
 
 variables = Variables()
 ecran = pygame.display.set_mode(variables.windowSize)
@@ -63,7 +62,8 @@ while loop :
 
 
     createMap.mapDisplay(ecran)
-    rect = pygame.draw.rect(ecran, (0, 255, 0), (pygame.Rect(player.pos[0], player.pos[1], (variables.caseSize - 1), (variables.caseSize - 1))))
+    
+    player.playerDisplay()
 
     ennemies.ennemiesMove()
     ennemies.ennemiesDisplay()
