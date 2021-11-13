@@ -65,8 +65,8 @@ while loop :
     
     player.playerDisplay()
 
-    ennemies.ennemiesMove()
-    ennemies.ennemiesDisplay()
+    ennemies.ennemies()
+
     items.itemsDisplay()
 
     ecran.blit(yourScore, scoreRect)

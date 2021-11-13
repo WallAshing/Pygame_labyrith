@@ -16,6 +16,10 @@ class Enemies :
             self.ennemiCasePosList.append([(self.variable.mapSize - 1), 0])
             self.ennemis["Ennemi{0}".format(i)] = Enemy(self.createNewMap, self.ennemiCasePosList[i]) # Créé un dictionnaire d'énnemis
 
+    def ennemies(self):
+        self.ennemiesMove()
+        self.ennemiesDisplay()
+
     def ennemiesMove(self) :
         for i in range(0, self.variable.ennemiNumber) :
             self.ennemis["Ennemi{0}".format(i)].move()
