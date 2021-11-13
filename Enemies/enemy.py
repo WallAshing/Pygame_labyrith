@@ -1,7 +1,6 @@
 
 import random
 from Enemies.Enemies_Features.explorerChecker import *
-from Enemies.Enemies_Features.explorerDecision import *
 from Enemies.Enemies_Features.miscellaneous import SupprBoxes
 
 class Enemy :
