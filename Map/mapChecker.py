@@ -35,7 +35,6 @@ class MapChecker :
                 del self.boxToCheck[0]
 
             else :
-                # self.variable.
                 self.boxToCheck.clear()
                 self.checkedBox.clear()
                 return

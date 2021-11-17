@@ -19,21 +19,15 @@ class createNewMap :
 			self.currentMap.append([])
 			for j in range(self.variable.mapSize) :
 				oneToFour = random.randint(1, (self.probability))
-				if i == 0 and j == 0 : 									# Player spawn
+				if i == 0 and j == 0 :
 					self.currentMap[i].append(0)
-					print("Spawn created !")
-				elif i == (self.variable.mapSize - 1) and j == 0 : 		# Enemy spawn
+				elif i == (self.variable.mapSize - 1) and j == 0 :
 					self.currentMap[i].append(0)
-					print("Enemy spawn created !")
-				elif oneToFour < math.floor(self.probability * 0.35) :	# Wall spawn
+				elif oneToFour < math.floor(self.probability * 0.35) :
 					self.currentMap[i].append(1)
 				elif i == (self.variable.mapSize - 1) and j == (self.variable.mapSize - 1) and self.variable.keyNumber > 0 :	# Key spawn
 					self.currentMap[i].append(2)
 					self.variable.keyNumber -= 1
-				
-				# elif oneToFour == 150 and self.variable.keyNumber > 0 :
-				# 	self.currentMap[i].append(2)
-				# 	self.variable.keyNumber -= 1
 				else :
 					self.currentMap[i].append(0)
 					self.spawnableCaseList.append((i, j))

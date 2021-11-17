@@ -11,7 +11,7 @@ class Player :
         self.casepos = [0, 0]
         self.vivant = True
         self.win = False
-        self.moveCooldown = 150
+        self.moveCooldown = 50
         self.index = 0
         self.holdDirection = {
             "LEFT"  : False,

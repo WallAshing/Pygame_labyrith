@@ -1,8 +1,6 @@
 import pygame
 import random
 
-from Map.createNewMap import createNewMap
-
 class Items :
     def __init__(self, ecran, variables, createNewMap) :
         self.ecran = ecran
