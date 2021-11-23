@@ -5,7 +5,6 @@ import math
 ecran = pygame.display.set_mode((500, 500))
 class createNewMap :
 	
-	# mapColor = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 	def __init__(self, variable):
 		self.variable = variable
 		self.probability = (self.variable.mapSize * 10)

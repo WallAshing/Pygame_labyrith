@@ -25,9 +25,20 @@ class Player :
             "item3" : 0,
             "item4" : 0,
         }
+        self.selectItem = {
+            "itemName" : "",
+            "usingItem" : False,
+        }
 
     def playerDisplay(self):
         pygame.draw.rect(self.ecran, (0, 255, 0), (pygame.Rect((self.casepos[0] * self.variable.caseSize + 1), (self.casepos[1] * self.variable.caseSize + 1), (self.variable.caseSize - 1), (self.variable.caseSize - 1))))
+
+    def choseItem(self, itemName):
+        self.selectItem = itemName
+
+    def useItem(self):
+        self.inventory[self.selectItem] -= 1
+        self.selectItem["usingItem"] = True
 
     def move(self, player) :
         for event in pygame.event.get() :
@@ -38,8 +49,22 @@ class Player :
                     return False
                 if event.key == pygame.K_r :
                     player.win = True
+                if event.key == pygame.key.key_code("&"):
+                    self.choseItem("item1")
+                    print("& has been pressed.")
+                if event.key == pygame.key.key_code("é") :
+                    self.choseItem("item2")
+                    print("é has been pressed.")
+                if event.key == pygame.K_QUOTEDBL :
+                    self.choseItem("item3")
+                    print("\" has been pressed.")
+                if event.key == pygame.K_QUOTE :
+                    self.choseItem("item4")
+                    print("\' has been pressed.")
+                if event.key == pygame.K_SPACE :
+                    self.useItem()
                 if event.key == pygame.K_p :
-                    time.sleep(100)
+                    time.sleep(20)
                 if event.key == pygame.K_LEFT or event.key == pygame.K_q :
                     self.holdDirection["LEFT"] = True
                     self.holdDirection["RIGHT"] = False
