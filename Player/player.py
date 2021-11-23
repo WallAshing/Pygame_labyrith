@@ -26,7 +26,7 @@ class Player :
             "item4" : 0,
         }
         self.selectItem = {
-            "itemName" : "",
+            "itemName" : "item1",
             "usingItem" : False,
         }
 
@@ -34,10 +34,10 @@ class Player :
         pygame.draw.rect(self.ecran, (0, 255, 0), (pygame.Rect((self.casepos[0] * self.variable.caseSize + 1), (self.casepos[1] * self.variable.caseSize + 1), (self.variable.caseSize - 1), (self.variable.caseSize - 1))))
 
     def choseItem(self, itemName):
-        self.selectItem = itemName
+        self.selectItem["itemName"] = itemName
 
     def useItem(self):
-        self.inventory[self.selectItem] -= 1
+        self.inventory[self.selectItem["itemName"]] -= 1
         self.selectItem["usingItem"] = True
 
     def move(self, player) :
@@ -45,22 +45,19 @@ class Player :
             if event.type == pygame.QUIT : 
                 return False
             if event.type == pygame.KEYDOWN :
+                # print(event.key)
                 if event.key == pygame.K_ESCAPE :
                     return False
                 if event.key == pygame.K_r :
                     player.win = True
-                if event.key == pygame.key.key_code("&"):
+                if event.key == 49 :
                     self.choseItem("item1")
-                    print("& has been pressed.")
-                if event.key == pygame.key.key_code("é") :
+                if event.key == 50 :
                     self.choseItem("item2")
-                    print("é has been pressed.")
-                if event.key == pygame.K_QUOTEDBL :
+                if event.key == 51 :
                     self.choseItem("item3")
-                    print("\" has been pressed.")
-                if event.key == pygame.K_QUOTE :
+                if event.key == 52 :
                     self.choseItem("item4")
-                    print("\' has been pressed.")
                 if event.key == pygame.K_SPACE :
                     self.useItem()
                 if event.key == pygame.K_p :
@@ -79,11 +76,19 @@ class Player :
                                 self.variable.winNumber += 1
                                 print("You won")
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0] - 1])[self.casepos[1]]) != 1:
+                            elif ((self.createNewMap.currentMap[self.casepos[0] - 1])[self.casepos[1]]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True and ((self.createNewMap.currentMap[self.casepos[0] - 2])[self.casepos[1]]) == 0 and self.casepos[0] > 1:
+                                self.index = 0
+                                self.selectItem["usingItem"] = False
+                                self.pos[0] -= (self.variable.caseSize * 2)
+                                self.casepos[0] -= 2
+                                self.walkOnItems()
+
+                            elif ((self.createNewMap.currentMap[self.casepos[0] - 1])[self.casepos[1]]) == 0:
                                 self.index = 0
                                 self.pos[0] -= self.variable.caseSize
                                 self.casepos[0] -= 1
                                 self.walkOnItems()
+   
 
                 if event.key == pygame.K_RIGHT or event.key == pygame.K_d : 
                     self.holdDirection["LEFT"] = False
@@ -98,8 +103,16 @@ class Player :
                                 self.win = True
                                 self.variable.winNumber += 1
                                 print("You won")
+ 
+                            elif ((self.createNewMap.currentMap[self.casepos[0] + 1])[self.casepos[1]]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True :
+                                if self.casepos[0] < (self.variable.mapSize - 2) and ((self.createNewMap.currentMap[self.casepos[0] + 2])[self.casepos[1]]) == 0  :
+                                    self.index = 0
+                                    self.pos[0] += (self.variable.caseSize * 2)
+                                    self.selectItem["usingItem"] = False
+                                    self.casepos[0] += 2
+                                    self.walkOnItems()
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0] + 1])[self.casepos[1]]) != 1 :
+                            elif ((self.createNewMap.currentMap[self.casepos[0] + 1])[self.casepos[1]]) == 0 :
                                 self.index = 0
                                 self.pos[0] += self.variable.caseSize
                                 self.casepos[0] += 1
@@ -119,7 +132,14 @@ class Player :
                                 self.variable.winNumber += 1
                                 print("You won")
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 1]) != 1:
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 1]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True and ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 2]) == 0 and self.casepos[1] > 1:
+                                self.index = 0
+                                self.pos[1] -= (self.variable.caseSize * 2)
+                                self.selectItem["usingItem"] = False
+                                self.casepos[1] -= 2
+                                self.walkOnItems()
+
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 1]) == 0 :
                                 self.index = 0
                                 self.pos[1] -= self.variable.caseSize
                                 self.casepos[1] -= 1
@@ -141,7 +161,15 @@ class Player :
                                 self.variable.winNumber += 1
                                 print("You won")
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 1]) != 1:
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 1]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True :
+                                if self.casepos[1] < (self.variable.mapSize - 2) and ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 2]) == 0 :
+                                    self.index = 0
+                                    self.pos[1] += (self.variable.caseSize * 2)
+                                    self.selectItem["usingItem"] = False
+                                    self.casepos[1] += 2
+                                    self.walkOnItems()
+
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 1]) == 0 :
                                 self.index = 0
                                 self.pos[1] += self.variable.caseSize
                                 self.casepos[1] += 1
@@ -170,8 +198,14 @@ class Player :
                                 self.variable.winNumber += 1
                                 print("You won")
                                 
+                            elif ((self.createNewMap.currentMap[self.casepos[0] - 1])[self.casepos[1]]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True and ((self.createNewMap.currentMap[self.casepos[0] - 2])[self.casepos[1]]) == 0 and self.casepos[0] > 1:
+                                self.index = 0
+                                self.selectItem["usingItem"] = False
+                                self.pos[0] -= (self.variable.caseSize * 2)
+                                self.casepos[0] -= 2
+                                self.walkOnItems()
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0] - 1])[self.casepos[1]]) != 1:
+                            elif ((self.createNewMap.currentMap[self.casepos[0] - 1])[self.casepos[1]]) == 0:
                                 self.index = 0
                                 self.pos[0] -= self.variable.caseSize
                                 self.casepos[0] -= 1
@@ -187,7 +221,15 @@ class Player :
                                 self.variable.winNumber += 1
                                 print("You won")
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0] + 1])[self.casepos[1]]) != 1 :
+                            elif ((self.createNewMap.currentMap[self.casepos[0] + 1])[self.casepos[1]]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True :
+                                if self.casepos[0] < (self.variable.mapSize - 2) and ((self.createNewMap.currentMap[self.casepos[0] + 2])[self.casepos[1]]) == 0 :
+                                    self.index = 0
+                                    self.pos[0] += (self.variable.caseSize * 2)
+                                    self.selectItem["usingItem"] = False
+                                    self.casepos[0] += 2
+                                    self.walkOnItems()
+
+                            elif ((self.createNewMap.currentMap[self.casepos[0] + 1])[self.casepos[1]]) == 0 :
                                 self.index = 0
                                 self.pos[0] += self.variable.caseSize
                                 self.casepos[0] += 1
@@ -203,7 +245,14 @@ class Player :
                                 self.variable.winNumber += 1
                                 print("You won")
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 1]) != 1:
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 1]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True and ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 2]) == 0 and self.casepos[1] > 1:
+                                self.index = 0
+                                self.pos[1] -= (self.variable.caseSize * 2)
+                                self.selectItem["usingItem"] = False
+                                self.casepos[1] -= 2
+                                self.walkOnItems()
+
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] - 1]) == 0:
                                 self.index = 0
                                 self.pos[1] -= self.variable.caseSize
                                 self.casepos[1] -= 1
@@ -219,7 +268,15 @@ class Player :
                                 self.variable.winNumber += 1
                                 print("You won")
 
-                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 1]) != 1:
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 1]) == 1 and self.selectItem["itemName"] == "item1" and self.selectItem["usingItem"] == True :
+                                if self.casepos[1] < (self.variable.mapSize - 2) and ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 2]) == 0 :
+                                    self.index = 0
+                                    self.pos[1] += (self.variable.caseSize * 2)
+                                    self.selectItem["usingItem"] = False
+                                    self.casepos[1] += 2
+                                    self.walkOnItems()
+
+                            elif ((self.createNewMap.currentMap[self.casepos[0]])[self.casepos[1] + 1]) == 0:
                                 self.index = 0
                                 self.pos[1] += self.variable.caseSize
                                 self.casepos[1] += 1
