@@ -13,11 +13,9 @@ items = Items(ecran, variables, createMap)
 player = Player(ecran, variables, createMap, items)
 mapChecker = MapChecker(createMap, variables)
 ennemies = Enemies(ecran, variables, createMap)
-def init():
-    pygame.font.init()
-    pygame.display.set_caption("Labyrinth_2D")
-    ennemies.ennemiesInit()
-init()
+pygame.font.init()
+pygame.display.set_caption("Labyrinth_2D")
+ennemies.ennemiesInit()
 font = pygame.font.SysFont('Arial', 30)
 loop = True
 
